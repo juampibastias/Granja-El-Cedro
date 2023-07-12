@@ -74,7 +74,7 @@ const DetailProduct = (props) => {
                 <div><h4>Descripción</h4></div>
                  <div className="my-2">{product.description}</div>
                  {/* <div><h4>Especificaciones técnicas</h4></div> */}
-                 <div className="my-2">{product.content}</div>
+                 {/* <div className="my-2">{product.content}</div> */}
                </div>
 
               <div className='botonera'>
