@@ -68,12 +68,12 @@ const DetailProduct = (props) => {
 
                     <h6 className="">Vendidos:<b> {product.sold}</b></h6>
                    </div>
-                    <h6 className="">Colores disponibles: <b>{product.color}</b></h6>
+                    {/* <h6 className="">Colores disponibles: <b>{product.color}</b></h6> */}
                 </div>
                <div className="info">
                 <div><h4>Descripción</h4></div>
                  <div className="my-2">{product.description}</div>
-                 <div><h4>Especificaciones técnicas</h4></div>
+                 {/* <div><h4>Especificaciones técnicas</h4></div> */}
                  <div className="my-2">{product.content}</div>
                </div>
 
