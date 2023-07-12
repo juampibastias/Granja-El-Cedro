@@ -53,7 +53,7 @@ const Home = (props) => {
   return (
     <div className="contenedor-home">
       <Head>
-        <title>ACCESS - HOME</title>
+        <title>GRANJA EL CEDRO - HOME</title>
       </Head>
       <Carousel prevLabel="" nextLabel="">
         <Carousel.Item

@@ -6,7 +6,7 @@ export const pendingPage = () => {
   return (
     <div className=" contenedor-nosotros ">
       <Head>
-        <title>ACCESS - PAGO PENDIENTE</title>
+        <title>GRANJA EL CEDRO - PAGO PENDIENTE</title>
         <link rel='shortcut icon' href='/images/favicon.ico'></link>
       </Head>
 

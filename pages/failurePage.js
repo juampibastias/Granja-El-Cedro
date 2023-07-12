@@ -5,7 +5,7 @@ export const failurePage = () => {
   return (
     <div className=" contenedor-nosotros ">
       <Head>
-        <title>ACCESS - PAGO RECHAZADO</title>
+        <title>GRANJA EL CEDRO - PAGO RECHAZADO</title>
         <link rel='shortcut icon' href='/images/favicon.ico'></link>
       </Head>
 

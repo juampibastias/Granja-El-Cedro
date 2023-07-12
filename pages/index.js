@@ -66,7 +66,7 @@ const Home = (props) => {
   return (
     <div className="home_page">
       <Head>
-        <title>ACCESS - TIENDA</title>
+        <title>GRANJA EL CEDRO - PRODUCTOS</title>
         <link rel="shortcut icon" href="/images/favicon.ico"></link>
       </Head>
 
@@ -76,7 +76,7 @@ const Home = (props) => {
             <a href="home">Inicio</a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Tienda Virtual
+            Productos
           </li>
         </ol>
       </nav>

@@ -27,7 +27,7 @@ const DetailProduct = (props) => {
             <a href="home">Inicio</a>
           </li>
           <li className="breadcrumb-item" aria-current="page">
-          <a href="/">Tienda</a>
+          <a href="/">Productos</a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
           {product.title}

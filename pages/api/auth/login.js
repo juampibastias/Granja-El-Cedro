@@ -28,7 +28,7 @@ const login = async (req, res) => {
         const refresh_token = createRefreshToken({id: user._id})
         
         res.json({
-            msg: "Bienvenido a tu cuenta de Access!",
+            msg: "Bienvenido a tu cuenta de Granja el Cedro!",
             refresh_token,
             access_token,
             user: {

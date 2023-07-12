@@ -5,7 +5,7 @@ export const Sucursales = () => {
   return (
     <div className="contenedor-sucursales">
       <Head>
-        <title>ACCESS - SUCURSALES</title>
+        <title>GRANJA EL CEDRO - SUCURSALES</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
       </Head>
 
