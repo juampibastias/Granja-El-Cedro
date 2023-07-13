@@ -7,6 +7,25 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
   const { auth, orders } = state;
   const [showMessage, setShowMessage] = useState(true);
 
+  // Función para formatear la fecha
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Los meses van de 0 a 11, por eso se suma 1
+    const year = date.getFullYear();
+
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+
+    // Formateo de la fecha y hora
+    const formattedDate = `${day}/${month}/${year}`;
+    const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+    return `${formattedDate} ${formattedTime}`;
+  };
+
   const handleDelivered = (order) => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
@@ -41,7 +60,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
     }
   }, [orderDetail]);
 
-  console.log(orderDetail)
+  console.log(orderDetail.provincia);
 
   if (!auth.user) return null;
 
@@ -88,9 +107,6 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                 <p>
                   Comentarios: <b>{order.coment}</b>
                 </p>
-                <p>
-                  Color del producto: <b>{order.color}</b>
-                </p>
 
                 {/* Verificar si el usuario es root admin */}
                 {!isRootAdmin && showMessage && !order.delivered && (
@@ -110,21 +126,21 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                   role="alert"
                 >
                   {order.delivered
-                    ? `Entregado ${order.updatedAt}`
-                    : "No entregado"}
+                    ? `Enviado ${formatDate(order.updatedAt)}`
+                    : "No enviado"}
                   {auth.user.role === "admin" && !order.delivered && (
                     <button
                       className="btn btn-dark text-uppercase"
                       onClick={() => handleDelivered(order)}
                     >
-                      Marcar como entregado
+                      Marcar como enviado
                     </button>
                   )}
                 </div>
               </div>
 
               <div className="product-list-order">
-                <h3>Lista de artículos</h3>
+                <h3>Lista de productos</h3>
                 {order.cart.map((item) => (
                   <div className="articles-list" key={item._id}>
                     <img src={item.images[0].url} alt={item.images[0].url} />
@@ -144,7 +160,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                 {!order.paid && auth.user.role !== "admin" && (
                   <div className="p-4">
                     <h2 className="mb-4 text-uppercase">
-                      Total: ${order.total}
+                      Total aprox.: ${order.total}
                     </h2>
                   </div>
                 )}
