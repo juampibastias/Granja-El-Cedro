@@ -47,6 +47,9 @@ function NavBar() {
   const adminRouter = () => {
     return (
       <>
+        <Link href="/profile">
+          <a className="dropdown-item">Pedidos</a>
+        </Link>
         <Link href="/users">
           <a className="dropdown-item">Usuarios</a>
         </Link>
@@ -90,7 +93,13 @@ function NavBar() {
 
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <Link href="/profile">
-            <a className="dropdown-item">Perfil</a>
+            <a
+              className={`dropdown-item${
+                auth.user.role === "admin" ? " d-none" : ""
+              }`}
+            >
+              Perfil
+            </a>
           </Link>
           {auth.user.role === "admin" && adminRouter()}
           <div className="dropdown-divider"></div>
@@ -172,7 +181,7 @@ function NavBar() {
               </a>
             </li>
             <li className="icono-redes">
-              <a href="https://wa.me/5492634668303" target="_blank">
+              <a href="https://wa.me/+5492634668303" target="_blank">
                 <img src="images/iconos-redes2.png" alt="iconos-redes" />
               </a>
             </li>

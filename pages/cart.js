@@ -8,14 +8,39 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import pibeDeFondo from "../public/images/pibeDeFondo.png";
 import axios from "axios";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 //Variables para axios mercadopago
 let itemMp;
 let itemMpArray = [];
 
-const Cart = () => {
+const provinceMap = {
+  0: "Buenos Aires",
+  1: "CABA",
+  2: "Catamarca",
+  3: "Chaco",
+  4: "Chubut",
+  5: "Cordoba",
+  6: "Entre Rios",
+  7: "Formosa",
+  8: "Jujuy",
+  9: "La Pampa",
+  10: "La Rioja",
+  11: "Mendoza",
+  12: "Misiones",
+  13: "Neuquen",
+  14: "Rio Negro",
+  15: "Salta",
+  16: "San Juan",
+  17: "San Luis",
+  18: "Santa Cruz",
+  19: "Santa Fe",
+  20: "Santiago del Estero",
+  21: "Tierra del Fuego",
+  22: "Tucuman",
+};
 
+const Cart = () => {
   //let tarifaEnvios = require('/costoEnvio.json')
 
   const { state, dispatch } = useContext(DataContext);
@@ -75,15 +100,7 @@ const Cart = () => {
   }, [callback]);
 
   const handlePayment = async () => {
-    if (
-      !provincia ||
-      !ciudad ||
-      !address ||
-      !mobile ||
-      !coment ||
-      !color ||
-      !cp
-    )
+    if (!provincia || !ciudad || !address || !mobile || !coment || !cp)
       return dispatch({
         type: "NOTIFY",
         payload: { error: "Por favor, complete los datos de envío." },
@@ -115,11 +132,8 @@ const Cart = () => {
           "Content-Type": "application/json",
         },
       })
-
       .then((response) => {
-        
         window.open(response.data.data, "_self");
-        
       });
 
     if (newCart.length < cart.length) {
@@ -224,29 +238,11 @@ const Cart = () => {
                 className="form-control mb-2"
                 onChange={(e) => setProvincia(e.target.value)}
               >
-                <option value="0">Buenos Aires</option>
-                <option value="1">CABA</option>
-                <option value="2">Catamarca</option>
-                <option value="3">Chaco</option>
-                <option value="4">Chubut</option>
-                <option value="5">Cordoba</option>
-                <option value="6">Entre Rios</option>
-                <option value="7">Formosa</option>
-                <option value="8">Jujuy</option>
-                <option value="9">La Pampa</option>
-                <option value="10">La Rioja</option>
-                <option value="11">Mendoza</option>
-                <option value="12">Misiones</option>
-                <option value="13">Neuquen</option>
-                <option value="14">Rio Negro</option>
-                <option value="15">Salta</option>
-                <option value="16">San Juan</option>
-                <option value="17">San Luis</option>
-                <option value="18">Santa Cruz</option>
-                <option value="19">Santa Fe</option>
-                <option value="20">Santiago del Estero</option>
-                <option value="21">Tierra del Fuego</option>
-                <option value="22">Tucuman</option>
+                {Object.entries(provinceMap).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
               </select>
 
               <label htmlFor="ciudad">Ciudad</label>
@@ -314,6 +310,7 @@ const Cart = () => {
                 onChange={(e) => setComent(e.target.value)}
               />
             </form>
+            {/* 
             <form>
               <label htmlFor="color">Color del producto</label>
               <input
@@ -325,7 +322,7 @@ const Cart = () => {
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
               />
-            </form>
+            </form> */}
 
             <div className="contenedor-subtotal">
               <div className="subtotal-item">
@@ -344,7 +341,7 @@ const Cart = () => {
 
             <Link href={auth.user ? "#!" : "/signin"}>
               <a className="btn add-to-cart my-2" onClick={handlePayment}>
-                Iniciar pago
+                Realizar el Pedido
               </a>
             </Link>
           </div>
@@ -353,7 +350,5 @@ const Cart = () => {
     </div>
   );
 };
-
-
 
 export default Cart;
